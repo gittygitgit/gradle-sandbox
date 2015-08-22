@@ -1,0 +1,18 @@
+
+/* 
+ * Closure is a Groovy Closure (???).  A Groovy Closure is an anonymous
+ * block of code which can take args, return a value, and be assigned 
+ * a variable.  It has access to all variables in scope at the time it
+ * is defined.  
+ */
+
+// c1 takes a task parameter
+Closure cl = { task -> println "I'm $task.project.name" }
+
+// Define a task hello in the base project having closure cl as the task body
+task hello << cl
+
+// Reuse the dl logic in project bluewhale
+project(':bluewhale') {
+ task hello << cl
+}
